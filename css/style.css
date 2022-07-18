@@ -1,0 +1,23 @@
+#hideWord {
+    letter-spacing: 10px;
+    font-size: 24px;
+    font-weight: bold;
+}
+
+button {
+    border-radius:5px;
+    padding:8px;
+    border:1px solid;
+    transition: background-color 0.5s;
+}
+button:hover {
+    background-color:rgba(34, 170, 255, 0.857);
+}
+button:hover:disabled {
+    background-color:aliceblue;
+}
+
+.tabDiv {
+    max-width: 490px;
+    margin: 0 auto;
+}
