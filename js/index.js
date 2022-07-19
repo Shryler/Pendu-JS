@@ -13,7 +13,6 @@ function generateLetterButton(divLetters) {
         li_element.addEventListener("click", () => checkIfLetterIsInTheWord(event), { once: true });
         ul_element.appendChild(li_element);
     });
-
     divLetters.appendChild(ul_element);
 }
 
