@@ -69,6 +69,8 @@ function checkIfLetterIsInTheWord(event) {
         });
         if (!hiddenWord.includes("_")) {
             msgInfo.textContent = `Bravo, vous avez réussi à trouver le mot ! Vous avez fait ${error} erreur(s)`;
+            img.classList.add("d-none");
+            iframe.classList.replace("d-none", "d-block");
             let recupButton = document.querySelectorAll("button[data-activ='1']");
             for (let i = 0; i < recupButton.length; i++) {
                 recupButton[i].setAttribute("disabled", "");
@@ -86,6 +88,8 @@ function checkIfLetterIsInTheWord(event) {
         } 
         if (error >= 13) {
             msgInfo.innerHTML = `Dommage, vous avez perdu ! Il fallait deviner le mot : <strong>${wordSelected}</strong>`;
+            img.classList.add("d-none");
+            looser.classList.replace("d-none", "d-block");
             let recupButton = document.querySelectorAll("button[data-activ='1']");
             for (let i = 0; i < recupButton.length; i++) {
                 recupButton[i].setAttribute("disabled", "");
