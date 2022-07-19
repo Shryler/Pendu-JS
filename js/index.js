@@ -25,7 +25,6 @@ function generateChoice(words_list) {
         const j = Math.floor(Math.random() * (i + 1));
         [words_list[i], words_list[j]] = [words_list[j], words_list[i]];
     }
-    console.log(words_list[0]);
     return words_list[0];
 }
 
@@ -39,7 +38,7 @@ function searchWord() {
 }
 
 let hiddenWord = searchWord();
-console.log(hiddenWord);
+
 
 
 // Récupération Image
