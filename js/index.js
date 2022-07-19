@@ -8,6 +8,7 @@ function generateLetterButton(divLetters) {
         const li_element = document.createElement("button");
         ul_element.className = ("tabDiv")
         li_element.classList.add("m-1");
+        li_element.setAttribute("data-activ", "1");
         li_element.textContent = letter;
         li_element.addEventListener("click", () => checkIfLetterIsInTheWord(event), { once: true });
         ul_element.appendChild(li_element);
@@ -46,7 +47,16 @@ console.log(hiddenWord);
 let imgDiv = document.querySelector("img");
 
 // Compteur Erreur
-let error = 1;
+let error = 0;
+
+function restart(){
+    let createBtnSubmit = document.createElement("button");
+    createBtnSubmit.setAttribute("type", "submit");
+    createBtnSubmit.className = ("mt-2");
+    createBtnSubmit.textContent = "Recommencez";
+    letters.append(createBtnSubmit);
+    createBtnSubmit.addEventListener("click", () => location.reload());
+}
 
 function checkIfLetterIsInTheWord(event) {
     const selected_letter = event.target.textContent;
@@ -58,15 +68,30 @@ function checkIfLetterIsInTheWord(event) {
                 hiddenWord[index] = selected_letter;
             }
         });
+        if (!hiddenWord.includes("_")) {
+            msgInfo.textContent = `Bravo, vous avez réussi à trouver le mot ! Vous avez fait ${error} erreur(s)`;
+            let recupButton = document.querySelectorAll("button[data-activ='1']");
+            for (let i = 0; i < recupButton.length; i++) {
+                recupButton[i].setAttribute("disabled", "");
+            }
+            restart();
+        }
         letter_press.setAttribute("disabled", "");
         hideWord.textContent = hiddenWord.join('');
         
     } else {
-        console.log("NO");
         error++;
         letter_press.setAttribute("disabled", "");
-        if (error < 15){
+        if (error <= 13) {
             imgDiv.src = `./img/${error}.png`;
+        } 
+        if (error >= 13) {
+            msgInfo.innerHTML = `Dommage, vous avez perdu ! Il fallait deviner le mot : <strong>${wordSelected}</strong>`;
+            let recupButton = document.querySelectorAll("button[data-activ='1']");
+            for (let i = 0; i < recupButton.length; i++) {
+                recupButton[i].setAttribute("disabled", "");
+            }
+            restart();
         }
     }
 }
